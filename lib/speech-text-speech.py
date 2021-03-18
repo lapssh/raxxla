@@ -1,21 +1,24 @@
-import speech_recognition as sr
-
-for index, name in enumerate(sr.Microphone.list_microphone_names()):
-    print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
+#speech-text-speech.py v. 0.1.0  18.03.2021
+#скрипт записывает голос с микрофона
+#переводит запись в текст
+#переводит текст в голос
 
 import speech_recognition as sr
 import pyttsx3
 
+# выводит список записывающих устройств, если нужно. 
+#for index, name in enumerate(sr.Microphone.list_microphone_names()):
+#    print("Microphone with name \"{1}\" found for `Microphone(device_index={0})`".format(index, name))
 
 def record_volume():
     r = sr.Recognizer()
-    with sr.Microphone(device_index=1) as source:
+    with sr.Microphone(device_index=1) as source: #device_index=  индекс устройства записи. 
         print('Настраиваюсь.')
         r.adjust_for_ambient_noise(source, duration=0.9)  # настройка посторонних шумов
         print('Слушаю...')
         audio = r.listen(source)
     print('Услышала.')
-    try:
+    try: # попытка распознать голос
         query = r.recognize_google(audio, language='ru-RU')
         text = query.lower()
         print(f'Вы сказали: {query.lower()}')
