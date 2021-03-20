@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ title }} :: {{ block.super }}
+{% endblock %}
+{% block modules %}
+    <h1>{{ modules }}</h1>
+<main>
+    <h1>Доступные модули:</h1>
+        <ul>
+            <li><a href="{% url 'speech_text_speech' %}">speech-text-speech</a></li>
+        </ul>
+</main>
+{% endblock  %}
