@@ -1,6 +1,9 @@
-from django.http import HttpResponse
+import sys
+
 from django.shortcuts import render
+from lib.speech_text_speech import record_volume
 import speech_recognition as sr
+
 
 def index(request):
     """
@@ -25,12 +28,35 @@ def modules(request):
     }
     return render(request, template_name=template_name, context=context)
 
+
+def show_lojso_page(request):
+    template_name = 'portal/lojso.html'
+    context = {
+        'title': 'Страница Lojso',
+        'text': 'text',
+    }
+    return render(request, template_name=template_name, context=context)
+
+
+def show_organizmus_page(request):
+    template_name = 'portal/organizmus.html'
+    context = {
+        'title': 'Страница Organizmus',
+        'text': 'text',
+    }
+    return render(request, template_name=template_name, context=context)
+
+
 def speech_text_speech(request):
     """
     Голос в текст и обратно в голос
     """
-    template_name = 'portal/modules.html'
+    text = record_volume()
+
+    template_name = 'portal/speech-text-speech.html'
     context = {
-        'title': 'Голос в текст и обратно'
+        'title': 'Голос в текст и обратно',
+        'text': text,
+
     }
     return render(request, template_name=template_name, context=context)
