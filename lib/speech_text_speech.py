@@ -58,5 +58,4 @@ def record_volume():
 
 
 if __name__ == "__main__":
-    while True:
-        record_volume()
+    pass

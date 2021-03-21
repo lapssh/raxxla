@@ -28,6 +28,25 @@ def modules(request):
     }
     return render(request, template_name=template_name, context=context)
 
+
+def show_lojso_page(request):
+    template_name = 'portal/lojso.html'
+    context = {
+        'title': 'Страница Lojso',
+        'text': 'text',
+    }
+    return render(request, template_name=template_name, context=context)
+
+
+def show_organizmus_page(request):
+    template_name = 'portal/organizmus.html'
+    context = {
+        'title': 'Страница Organizmus',
+        'text': 'text',
+    }
+    return render(request, template_name=template_name, context=context)
+
+
 def speech_text_speech(request):
     """
     Голос в текст и обратно в голос
