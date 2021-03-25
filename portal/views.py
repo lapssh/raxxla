@@ -2,13 +2,15 @@ import sys
 
 from django.shortcuts import render
 from lib.speech_text_speech import record_volume
+from loguru import logger
 import speech_recognition as sr
 
-
+@logger.catch()
 def index(request):
     """
     Заглавная страница портала
     """
+    logger.debug('Пользователь зашёл на главную.')
     template_name = 'portal/index.html'
     context = {
         'test': 'test',
@@ -60,3 +62,6 @@ def speech_text_speech(request):
 
     }
     return render(request, template_name=template_name, context=context)
+
+
+logger.add('debug.log', format='{time} {level} {message}', level='DEBUG', rotation='10 KB', compression='zip' )
